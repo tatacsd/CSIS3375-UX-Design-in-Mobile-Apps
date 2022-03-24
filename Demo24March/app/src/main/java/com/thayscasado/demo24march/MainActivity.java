@@ -1,5 +1,8 @@
 package com.thayscasado.demo24march;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -8,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -37,9 +41,29 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+
+        // Get the mainLayout
+        ConstraintLayout mainLayout = binding.mainContent.mainLayout;
+        //Set the default solid  color
+        mainLayout.setBackgroundColor(Color.parseColor("#FAFAFA"));
+
+        // Color list for the state of the fab using the colorStateList
+        binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Change the color of the fab to be a constrast of the mainLayout
+                ColorDrawable colorDrawable = (ColorDrawable) mainLayout.getBackground();
+                int colorID = colorDrawable.getColor(); // get the solid color
+
+                if(colorID != Color.LTGRAY){
+                    mainLayout.setBackgroundColor(Color.LTGRAY);
+                    binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FAFAFA")));
+                } else {
+                    mainLayout.setBackgroundColor(Color.parseColor("#FAFAFA"));
+                    binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+                }
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

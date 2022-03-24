@@ -1,0 +1,13 @@
+steps on the class:
+menu bar
+	- items
+		add drawable
+		explainig if Room / always / never
+
+Bindign: compile time
+find by id: run time
+
+
+	-items click item function
+
+Float backgroundtint, 
