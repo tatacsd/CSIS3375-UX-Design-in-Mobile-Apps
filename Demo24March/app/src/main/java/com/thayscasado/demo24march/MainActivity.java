@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,10 +24,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private ColorSpecViewModel colorSpecViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +84,28 @@ public class MainActivity extends AppCompatActivity {
                         }).show();
             }
         });
+
+        List<ColorSpec> colorSpecs = new ArrayList<>();
+        List<String> colorDescs = new ArrayList<>(Arrays.asList("BLACK", "ORANGE", "PURPLE"));
+        List<Integer> colorVals = new ArrayList<>(Arrays.asList( // 3 ways for colors
+                R.color.black,
+                Color.rgb(255,165,0),
+                Color.parseColor("#800080")
+        ));
+
+        // Create the list with the desc and the color int
+        for (int i = 0; i < colorDescs.size() ; i++) {
+            ColorSpec eachColor = new ColorSpec(colorDescs.get(i), colorVals.get(i));
+            colorSpecs.add(eachColor);
+        }
+
+        // set the owner of the view model
+        colorSpecViewModel = new ViewModelProvider(this).get(ColorSpecViewModel.class);
+        colorSpecViewModel.loadColors(colorSpecs);
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
