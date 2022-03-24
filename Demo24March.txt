@@ -1,0 +1,27 @@
+steps on the class:
+menu bar
+	- items
+		add drawable
+		explainig if Room / always / never
+
+Bindign: compile time
+find by id: run time
+
+
+	-items click item function
+
+Float backgroundtint, on click change the color of the the main layout and the float
+
+add a undo function to the float btn
+
+
+MMVM
+model -> data
+View -> working with user - ui
+VM - > Fits a layer between the model and view - > adapter the changes
+
+
+Passing data to a fragment
+Buddle
+resourceListener callback
+View model -> everybory can access and make teh changes
