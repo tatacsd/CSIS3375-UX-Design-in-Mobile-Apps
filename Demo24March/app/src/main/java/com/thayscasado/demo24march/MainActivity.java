@@ -64,8 +64,17 @@ public class MainActivity extends AppCompatActivity {
                     binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
                 }
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // ADD A LISTENER
+                Snackbar.make(view, "How do you like this color?", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", (View v) -> {
+                            if(colorID == Color.LTGRAY){
+                                mainLayout.setBackgroundColor(Color.LTGRAY);
+                                binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FAFAFA")));
+                            } else {
+                                mainLayout.setBackgroundColor(Color.parseColor("#FAFAFA"));
+                                binding.fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+                            }
+                        }).show();
             }
         });
     }
