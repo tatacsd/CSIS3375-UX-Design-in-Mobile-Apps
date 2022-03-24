@@ -17,6 +17,7 @@ import com.thayscasado.demo24march.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(MainActivity.this, "Clicked on Settings", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if(id == R.id.action_search){
+            Toast.makeText(MainActivity.this, "Clicked on Search", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if(id == R.id.action_userprofile) {
+            Toast.makeText(MainActivity.this, "Clicked on User Profile", Toast.LENGTH_SHORT).show();
             return true;
         }
 
