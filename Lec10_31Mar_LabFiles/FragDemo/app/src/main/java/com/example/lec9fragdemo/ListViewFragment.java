@@ -7,10 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.lec9fragdemo.databinding.FragmentListViewBinding;
 
@@ -56,5 +58,21 @@ public class ListViewFragment extends Fragment {
                 binding.listViewColors.setAdapter(new ColorSpecAdapter(colorSpecs));
             }
         });
+
+        binding.listViewColors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //i = index of the color in the ListVIew
+                Bundle bundle = new Bundle();
+                int colorVal = fragColors.get(i).getColorVal();
+                bundle.putInt("COLORVAL",colorVal);//using same key name for spinner and
+
+                NavHostFragment.findNavController(ListViewFragment.this)
+                        .navigate(R.id.action_FirstFragment_to_SecondFragment,bundle);
+
+            }
+        });
     }
+
+
 }
