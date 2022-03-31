@@ -83,3 +83,10 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+
+# mines
+*.zip
+MidtermReview/
+CheatSheet.docx
+CheatSheet.pdf
