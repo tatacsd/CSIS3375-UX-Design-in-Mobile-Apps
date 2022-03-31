@@ -1,5 +1,6 @@
 package com.example.lec9fragdemo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,13 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Get the bundle information passed from fragment 1
+        if(getArguments() != null){
+            int colorVal = getArguments().getInt("COLORVAL", Color.BLACK); // SECOND PARAM FOR DEFAULT
+            binding.textviewSecond.setTextColor(colorVal);
+            binding.textviewSecond.setText(R.string.txtSample); // using resource layout sample added to the project
+        }
 
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
